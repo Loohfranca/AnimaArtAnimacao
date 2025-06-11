@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anima Art - Animação de Festas Infantis</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#FF6B98", secondary: "#4ECDC4" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+      body {
+        font-family: "Nunito", sans-serif;
+        background-color: #fafbff;
+      }
+      .font-pacifico {
+        font-family: "Pacifico", serif;
+      }
+      .confetti-bg {
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23FF6B98' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+      }
+      .custom-checkbox {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ff6b98;
+        border-radius: 4px;
+        outline: none;
+        cursor: pointer;
+        position: relative;
+      }
+      .custom-checkbox:checked {
+        background-color: #ff6b98;
+      }
+      .custom-checkbox:checked::after {
+        content: "";
+        position: absolute;
+        width: 5px;
+        height: 10px;
+        border-right: 2px solid white;
+        border-bottom: 2px solid white;
+        top: 2px;
+        left: 6px;
+        transform: rotate(45deg);
+      }
+      .custom-switch {
+        position: relative;
+        display: inline-block;
+        width: 48px;
+        height: 24px;
+      }
+      .custom-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .switch-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #e2e8f0;
+        transition: 0.4s;
+        border-radius: 24px;
+      }
+      .switch-slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+      input:checked + .switch-slider {
+        background-color: #ff6b98;
+      }
+      input:checked + .switch-slider:before {
+        transform: translateX(24px);
+      }
+      .tab-button {
+        transition: all 0.3s ease;
+      }
+      .tab-button.active {
+        background-color: #ff6b98;
+        color: white;
+      }
+      .tab-content {
+        display: none;
+      }
+      .tab-content.active {
+        display: block;
+      }
+      .floating-whatsapp {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 100;
+      }
+      .progress-bar {
+        height: 6px;
+        background-color: #e2e8f0;
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        background-color: #ff6b98;
+        transition: width 0.3s ease;
+      }
+      .item-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .item-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+      .package-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .package-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+      .quantity-control {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .quantity-btn {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: #f3f4f6;
+        cursor: pointer;
+        user-select: none;
+      }
+      .quantity-btn:hover {
+        background-color: #e5e7eb;
+      }
+      .quantity-display {
+        width: 30px;
+        text-align: center;
+        font-weight: 600;
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body class="confetti-bg">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <a href="#" class="text-3xl font-['Pacifico'] text-primary"
+          >Anima Art</a
+        >
+        <nav class="hidden md:flex space-x-6">
+          <a
+            href="#inicio"
+            class="font-semibold text-gray-700 hover:text-primary transition-colors md:text-2xl"
+            >Início</a
+          >
+          <a
+            href="#montar"
+            class="font-semibold text-gray-700 hover:text-primary transition-colors md:text-2xl"
+            >Montar Festa</a
+          >
+          <a
+            href="#pacotes"
+            class="font-semibold text-gray-700 hover:text-primary transition-colors md:text-2xl"
+            >Pacotes</a
+          >
+          <a
+            href="#galeria"
+            class="font-semibold text-gray-700 hover:text-primary transition-colors md:text-2xl"
+            >Galeria</a
+          >
+          <a
+            href="#contato"
+            class="font-semibold text-gray-700 hover:text-primary transition-colors md:text-2xl"
+            >Contato</a
+          >
+        </nav>
+        <button
+          class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700"
+          id="mobile-menu-button"
+        >
+          <i class="ri-menu-line ri-lg"></i>
+        </button>
+      </div>
+      <div id="mobile-menu" class="hidden bg-white shadow-lg md:hidden">
+        <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+          <a
+            href="#inicio"
+            class="font-semibold text-gray-700 hover:text-primary transition-colors py-2"
+            >Início</a
+          >
+          <a
+            href="#montar"
+            class="font-semibold text-gray-700 hover:text-primary transition-colors py-2"
+            >Montar Festa</a
+          >
+          <a
+            href="#pacotes"
+            class="font-semibold text-gray-700 hover:text-primary transition-colors py-2"
+            >Pacotes</a
+          >
+          <a
+            href="#galeria"
+            class="font-semibold text-gray-700 hover:text-primary transition-colors py-2"
+            >Galeria</a
+          >
+          <a
+            href="#contato"
+            class="font-semibold text-gray-700 hover:text-primary transition-colors py-2"
+            >Contato</a
+          >
+        </div>
+      </div>
+    </header>
+    <main>
+      <section
+        id="inicio"
+        class="py-12 md:py-20"
+        style="
+          background-image: url('https://readdy.ai/api/search-image?query=colorful%2520children%2520party%2520background%2520with%2520balloons%2520and%2520confetti%252C%2520bright%2520colors%252C%2520festive%2520atmosphere%252C%2520cartoon%2520style%252C%2520cheerful%2520and%2520playful%2520design%252C%2520perfect%2520for%2520kids%2520celebration%252C%2520no%2520people%252C%2520just%2520decorative%2520elements&width=1200&height=600&seq=hero1&orientation=landscape');
+          background-size: cover;
+          background-position: center;
+        "
+      >
+        <div
+          class="container mx-auto px-4 flex flex-col md:flex-row items-center"
+        >
+          <div
+            class="w-full md:w-1/2 bg-white bg-opacity-90 p-8 rounded-lg shadow-lg"
+          >
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+              Festas Infantis Inesquecíveis!
+            </h1>
+            <p class="text-lg text-gray-700 mb-8 md:text-2xl">
+              Transforme a festa do seu filho em uma experiência mágica com a
+              Anima Art. Recreação personalizada, brinquedos, oficinas e muito
+              mais!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a
+                href="#montar"
+                class="bg-primary text-white py-3 px-6 rounded-button font-bold text-lg shadow-lg hover:bg-opacity-90 transition-all transform hover:-translate-y-1 whitespace-nowrap"
+                >Montar Minha Festa</a
+              >
+              <a
+                href="#pacotes"
+                class="bg-white text-primary border-2 border-primary py-3 px-6 rounded-button font-bold text-lg shadow-md hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1 whitespace-nowrap"
+                >Ver Pacotes Prontos</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="montar" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl md:text-5xl font-bold text-center mb-4">
+            Monte Sua Festa
+          </h2>
+          <p
+            class="text-gray-600 text-center mb-12 max-w-3xl md:text-2xl mx-auto"
+          >
+            Personalize a festa do seu filho escolhendo os itens que mais
+            combinam com a diversão que você imagina!
+          </p>
+          <div class="mb-8">
+            <div class="progress-bar mb-8 max-w-2xl mx-auto">
+              <div class="progress-fill" style="width: 25%"></div>
+            </div>
+            <div class="flex justify-center mb-8">
+              <div class="inline-flex p-1 bg-gray-100 rounded-full">
+                <button
+                  class="tab-button active px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap"
+                  data-tab="brinquedos"
+                >
+                  Brinquedos
+                </button>
+                <button
+                  class="tab-button px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap"
+                  data-tab="oficinas"
+                >
+                  Oficinas
+                </button>
+                <button
+                  class="tab-button px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap"
+                  data-tab="recreadores"
+                >
+                  Recreadores
+                </button>
+                <button
+                  class="tab-button px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap"
+                  data-tab="extras"
+                >
+                  Extras
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="tab-content active" id="brinquedos-content">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div
+                class="item-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+              >
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=colorful%2520ball%2520pit%2520for%2520children%252C%2520filled%2520with%2520multicolored%2520plastic%2520balls%252C%2520bright%2520and%2520cheerful%2520colors%252C%2520safe%2520play%2520environment%252C%2520fun%2520activity%2520for%2520kids%2520party%252C%2520indoor%2520playground%2520equipment&width=400&height=300&seq=item1&orientation=landscape"
+                    alt="Piscina de Bolinhas"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div class="p-4">
+                  <h3 class="text-xl font-bold text-gray-800 mb-2">
+                    Piscina de Bolinhas
+                  </h3>
+                  <p class="text-gray-600 mb-4">
+                    Diversão garantida com nossa colorida piscina de bolinhas!
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-bold text-xl"
+                      >R$ 100,00</span
+                    >
+                    <div class="quantity-control">
+                      <div class="quantity-btn minus">-</div>
+                      <div class="quantity-display">0</div>
+                      <div class="quantity-btn plus">+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="item-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+              >
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=colorful%2520bouncy%2520castle%2520for%2520children%252C%2520inflatable%2520jump%2520house%2520with%2520bright%2520colors%252C%2520fun%2520party%2520equipment%252C%2520safe%2520play%2520structure%252C%2520outdoor%2520activity%2520for%2520kids%2520birthday%2520celebration&width=400&height=300&seq=item2&orientation=landscape"
+                    alt="Pula-Pula"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div class="p-4">
+                  <h3 class="text-xl font-bold text-gray-800 mb-2">
+                    Pula-Pula
+                  </h3>
+                  <p class="text-gray-600 mb-4">
+                    Castelo inflável colorido para pular e se divertir!
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-bold text-xl"
+                      >R$ 100,00</span
+                    >
+                    <div class="quantity-control">
+                      <div class="quantity-btn minus">-</div>
+                      <div class="quantity-display">0</div>
+                      <div class="quantity-btn plus">+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="item-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+              >
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=colorful%2520children%2527s%2520slide%2520with%2520bright%2520colors%252C%2520safe%2520play%2520equipment%252C%2520fun%2520activity%2520for%2520kids%2520party%252C%2520indoor%2520playground%2520structure%252C%2520cheerful%2520design%2520with%2520primary%2520colors&width=400&height=300&seq=item3&orientation=landscape"
+                    alt="Escorregador Gigante"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div class="p-4">
+                  <h3 class="text-xl font-bold text-gray-800 mb-2">
+                    Escorregador Gigante
+                  </h3>
+                  <p class="text-gray-600 mb-4">
+                    Escorregador colorido e seguro para horas de diversão!
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-bold text-xl"
+                      >R$ 200,00</span
+                    >
+                    <div class="quantity-control">
+                      <div class="quantity-btn minus">-</div>
+                      <div class="quantity-display">0</div>
+                      <div class="quantity-btn plus">+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-content" id="oficinas-content">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div
+                class="item-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+              >
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=children%2520painting%2520workshop%2520with%2520easels%2520and%2520canvases%252C%2520colorful%2520art%2520supplies%252C%2520creative%2520activity%252C%2520bright%2520and%2520cheerful%2520atmosphere%252C%2520professional%2520photography%252C%2520clean%2520setup&width=400&height=300&seq=painting1&orientation=landscape"
+                    alt="Oficina de Pintura"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div class="p-4">
+                  <h3 class="text-xl font-bold text-gray-800 mb-2">
+                    Oficina de Pintura
+                  </h3>
+                  <p class="text-gray-600 mb-4">
+                    Inclui: quadro 20x20, tintas, pincéis, feltros, pompom,
+                    brilhos, pedrinhas e cavalete suporte. Para todas as idades.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-bold text-xl"
+                      >R$ 210,00</span
+                    >
+                    <div class="quantity-control">
+                      <div class="quantity-btn minus">-</div>
+                      <div class="quantity-display">0</div>
+                      <div class="quantity-btn plus">+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="item-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+              >
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src="https://static.readdy.ai/image/8523f829b2824315d7ce31773c8a7ad9/150ec45d231ab88d672bdea23beb8d4e.jpeg"
+                    alt="Oficina de Miçanga"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div class="p-4">
+                  <h3 class="text-xl font-bold text-gray-800 mb-2">
+                    Oficina de Miçanga
+                  </h3>
+                  <p class="text-gray-600 mb-4">
+                    Criação de lindas pulseiras e colares com miçangas
+                    coloridas. A partir dos 5 anos.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-bold text-xl"
+                      >R$ 200,00</span
+                    >
+                    <div class="quantity-control">
+                      <div class="quantity-btn minus">-</div>
+                      <div class="quantity-display">0</div>
+                      <div class="quantity-btn plus">+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="item-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+              >
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src="https://static.readdy.ai/image/8523f829b2824315d7ce31773c8a7ad9/8b79f539c2ae48ecd2152032aecb8e1b.jpeg"
+                    alt="Oficina de Slime"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div class="p-4">
+                  <h3 class="text-xl font-bold text-gray-800 mb-2">
+                    Oficina de Slime
+                  </h3>
+                  <p class="text-gray-600 mb-4">
+                    Inclui: pote com tampa, corante alimentício, glitter e
+                    ativador. A partir dos 3 anos.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-bold text-xl"
+                      >R$ 220,00</span
+                    >
+                    <div class="quantity-control">
+                      <div class="quantity-btn minus">-</div>
+                      <div class="quantity-display">0</div>
+                      <div class="quantity-btn plus">+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="item-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+              >
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src="https://static.readdy.ai/image/8523f829b2824315d7ce31773c8a7ad9/e193bb0119d02203abc7ce1bc78ee0e9.jpeg"
+                    alt="Oficina de Jardinagem"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div class="p-4">
+                  <h3 class="text-xl font-bold text-gray-800 mb-2">
+                    Oficina de Jardinagem
+                  </h3>
+                  <p class="text-gray-600 mb-4">
+                    Plantio de mudas e decoração de vasinhos para levar para
+                    casa!
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-bold text-xl"
+                      >R$ 240,00</span
+                    >
+                    <div class="quantity-control">
+                      <div class="quantity-btn minus">-</div>
+                      <div class="quantity-display">0</div>
+                      <div class="quantity-btn plus">+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="item-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+              >
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=colorful%2520play%2520dough%2520workshop%2520setup%2520with%2520various%2520tools%2520and%2520shapes%252C%2520bright%2520modeling%2520clay%2520in%2520different%2520colors%252C%2520creative%2520activity%2520materials%252C%2520clean%2520white%2520table%2520background%252C%2520professional%2520photography%252C%2520no%2520people&width=400&height=300&seq=playdough1&orientation=landscape"
+                    alt="Oficina de Massinha"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div class="p-4">
+                  <h3 class="text-xl font-bold text-gray-800 mb-2">
+                    Oficina de Massinha
+                  </h3>
+                  <p class="text-gray-600 mb-4">
+                    Inclui: todos os ingredientes, formas de bixinhos e saquinho
+                    para levar para casa. Para todas as idades.
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-bold text-xl"
+                      >R$ 100,00</span
+                    >
+                    <div class="quantity-control">
+                      <div class="quantity-btn minus">-</div>
+                      <div class="quantity-display">0</div>
+                      <div class="quantity-btn plus">+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-content" id="recreadores-content">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div
+                class="item-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+              >
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=female%2520party%2520entertainer%2520playing%2520with%2520children%252C%2520fun%2520activities%2520at%2520kids%2520party%252C%2520games%2520and%2520entertainment%252C%2520cheerful%2520atmosphere%252C%2520colorful%2520party%2520setting&width=400&height=300&seq=item7&orientation=landscape"
+                    alt="Recreador(a)"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div class="p-4">
+                  <h3 class="text-xl font-bold text-gray-800 mb-2">
+                    Recreador(a)
+                  </h3>
+                  <p class="text-gray-600 mb-4">
+                    Profissional especializado em brincadeiras e animação!
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-bold text-xl"
+                      >R$ 280,00</span
+                    >
+                    <div class="quantity-control">
+                      <div class="quantity-btn minus">-</div>
+                      <div class="quantity-display">0</div>
+                      <div class="quantity-btn plus">+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="item-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+              >
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=two%2520party%2520entertainers%2520playing%2520with%2520children%252C%2520group%2520games%2520at%2520kids%2520party%252C%2520fun%2520activities%2520and%2520entertainment%252C%2520cheerful%2520atmosphere%252C%2520colorful%2520party%2520setting&width=400&height=300&seq=item8&orientation=landscape"
+                    alt="Dupla de Recreadores"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div class="p-4">
+                  <h3 class="text-xl font-bold text-gray-800 mb-2">
+                    Dupla de Recreadores
+                  </h3>
+                  <p class="text-gray-600 mb-4">
+                    Dois recreadores para festas maiores e mais diversão!
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-bold text-xl"
+                      >R$ 480,00</span
+                    >
+                    <div class="quantity-control">
+                      <div class="quantity-btn minus">-</div>
+                      <div class="quantity-display">0</div>
+                      <div class="quantity-btn plus">+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-content" id="extras-content">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div
+                class="item-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+              >
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=princess%2520character%2520entertainer%2520at%2520children%2527s%2520party%252C%2520beautiful%2520costume%252C%2520interacting%2520with%2520kids%252C%2520magical%2520atmosphere%252C%2520colorful%2520party%2520setting%252C%2520fantasy%2520character&width=400&height=300&seq=item9&orientation=landscape"
+                    alt="Personagem Princesa"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div class="p-4">
+                  <h3 class="text-xl font-bold text-gray-800 mb-2">
+                    Personagem Princesa
+                  </h3>
+                  <p class="text-gray-600 mb-4">
+                    Princesa encantada para animar e encantar a festa!
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-bold text-xl"
+                      >R$ 350,00</span
+                    >
+                    <div class="quantity-control">
+                      <div class="quantity-btn minus">-</div>
+                      <div class="quantity-display">0</div>
+                      <div class="quantity-btn plus">+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="item-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+              >
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=face%2520painting%2520for%2520children%252C%2520colorful%2520designs%2520on%2520kids%2520faces%252C%2520artistic%2520face%2520art%252C%2520fun%2520party%2520activity%252C%2520creative%2520and%2520vibrant%2520face%2520paint&width=400&height=300&seq=item10&orientation=landscape"
+                    alt="Pintura Artística"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div class="p-4">
+                  <h3 class="text-xl font-bold text-gray-800 mb-2">
+                    Pintura Artística
+                  </h3>
+                  <p class="text-gray-600 mb-4">
+                    Pinturas faciais coloridas e divertidas para as crianças!
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-bold text-xl"
+                      >R$ 260,00</span
+                    >
+                    <div class="quantity-control">
+                      <div class="quantity-btn minus">-</div>
+                      <div class="quantity-display">0</div>
+                      <div class="quantity-btn plus">+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="item-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100"
+              >
+                <div class="h-48 overflow-hidden">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=balloon%2520artist%2520making%2520colorful%2520balloon%2520animals%2520for%2520children%252C%2520fun%2520party%2520entertainment%252C%2520creative%2520balloon%2520sculptures%252C%2520kids%2520party%2520activity%252C%2520cheerful%2520atmosphere&width=400&height=300&seq=item11&orientation=landscape"
+                    alt="Esculturas de Balão"
+                    class="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <div class="p-4">
+                  <h3 class="text-xl font-bold text-gray-800 mb-2">
+                    Esculturas de Balão
+                  </h3>
+                  <p class="text-gray-600 mb-4">
+                    Criação de esculturas com balões coloridos e divertidos!
+                  </p>
+                  <div class="flex justify-between items-center">
+                    <span class="text-primary font-bold text-xl"
+                      >R$ 230,00</span
+                    >
+                    <div class="quantity-control">
+                      <div class="quantity-btn minus">-</div>
+                      <div class="quantity-display">0</div>
+                      <div class="quantity-btn plus">+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 p-4 z-40"
+            id="cart-summary"
+          >
+            <div
+              class="container mx-auto flex flex-col md:flex-row justify-between items-center"
+            >
+              <div class="mb-4 md:mb-0">
+                <p class="text-gray-600">
+                  Itens selecionados:
+                  <span id="item-count" class="font-bold">0</span>
+                </p>
+                <p class="text-gray-800">
+                  Total:
+                  <span id="total-price" class="font-bold text-primary text-xl"
+                    >R$ 0,00</span
+                  >
+                </p>
+              </div>
+              <button
+                id="continue-button"
+                class="bg-primary text-white py-3 px-6 rounded-button font-bold text-lg shadow-lg hover:bg-opacity-90 transition-all transform hover:-translate-y-1 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled
+              >
+                Continuar
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="pacotes" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+            Pacotes Prontos
+          </h2>
+          <p class="text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+            Escolha um de nossos pacotes completos e tenha uma festa incrível
+            sem preocupações!
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div
+              class="package-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 flex flex-col"
+            >
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://static.readdy.ai/image/8523f829b2824315d7ce31773c8a7ad9/65a2f9eb9a5ec7d96b444f5ba5016265.jpeg"
+                  alt="Pacote Baixinhos"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6 flex-grow">
+                <div
+                  class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold mb-3"
+                >
+                  1 a 5 anos
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">
+                  Pacote Baixinhos
+                </h3>
+                <ul class="text-gray-600 mb-6 space-y-2">
+                  <li class="flex items-start">
+                    <i class="ri-check-line ri-lg text-green-500 mr-2 mt-1"></i>
+                    <span>Piscina de bolinhas</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="ri-check-line ri-lg text-green-500 mr-2 mt-1"></i>
+                    <span>Oficina de massinha</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="ri-check-line ri-lg text-green-500 mr-2 mt-1"></i>
+                    <span>1 Recreador(a)</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="ri-check-line ri-lg text-green-500 mr-2 mt-1"></i>
+                    <span>Esculturas de balão</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="p-6 border-t border-gray-100">
+                <div class="flex justify-between items-center mb-4">
+                  <span class="text-primary font-bold text-2xl">R$ 780,00</span>
+                  <span class="text-gray-500 text-sm">Duração: 3 horas</span>
+                </div>
+                <button
+                  class="w-full bg-primary text-white py-3 px-6 rounded-button font-bold text-lg shadow-lg hover:bg-opacity-90 transition-all transform hover:-translate-y-1 whitespace-nowrap package-select-btn"
+                  data-package="Pacote Baixinhos"
+                  data-price="780"
+                >
+                  Escolher Este
+                </button>
+              </div>
+            </div>
+            <div
+              class="package-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 flex flex-col transform scale-105 relative"
+            >
+              <div
+                class="absolute top-0 right-0 bg-primary text-white px-4 py-1 text-sm font-bold"
+              >
+                Mais Popular
+              </div>
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=children%2520birthday%2520party%2520for%2520kids%25206%2520years%2520and%2520older%252C%2520fun%2520activities%252C%2520bouncy%2520castle%252C%2520games%252C%2520colorful%2520decorations%252C%2520cheerful%2520atmosphere%252C%2520age-appropriate%2520entertainment&width=400&height=300&seq=package2&orientation=landscape"
+                  alt="Pacote Galerinha"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6 flex-grow">
+                <div
+                  class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold mb-3"
+                >
+                  A partir de 6 anos
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">
+                  Pacote Galerinha
+                </h3>
+                <ul class="text-gray-600 mb-6 space-y-2">
+                  <li class="flex items-start">
+                    <i class="ri-check-line ri-lg text-green-500 mr-2 mt-1"></i>
+                    <span>Pula-pula</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="ri-check-line ri-lg text-green-500 mr-2 mt-1"></i>
+                    <span>Oficina de slime</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="ri-check-line ri-lg text-green-500 mr-2 mt-1"></i>
+                    <span>1 Recreador(a)</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="ri-check-line ri-lg text-green-500 mr-2 mt-1"></i>
+                    <span>Pintura artística</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="ri-check-line ri-lg text-green-500 mr-2 mt-1"></i>
+                    <span>Esculturas de balão</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="p-6 border-t border-gray-100">
+                <div class="flex justify-between items-center mb-4">
+                  <span class="text-primary font-bold text-2xl">R$ 980,00</span>
+                  <span class="text-gray-500 text-sm">Duração: 4 horas</span>
+                </div>
+                <button
+                  class="w-full bg-primary text-white py-3 px-6 rounded-button font-bold text-lg shadow-lg hover:bg-opacity-90 transition-all transform hover:-translate-y-1 whitespace-nowrap package-select-btn"
+                  data-package="Pacote Galerinha"
+                  data-price="980"
+                >
+                  Escolher Este
+                </button>
+              </div>
+            </div>
+            <div
+              class="package-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-100 flex flex-col"
+            >
+              <div class="h-48 overflow-hidden">
+                <img
+                  src="https://readdy.ai/api/search-image?query=premium%2520children%2520birthday%2520party%252C%2520luxury%2520decorations%252C%2520multiple%2520activities%252C%2520entertainers%252C%2520face%2520painting%252C%2520workshops%252C%2520bouncy%2520castle%252C%2520high-end%2520party%2520experience%2520for%2520all%2520ages&width=400&height=300&seq=package3&orientation=landscape"
+                  alt="Pacote Premium"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div class="p-6 flex-grow">
+                <div
+                  class="inline-block bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-semibold mb-3"
+                >
+                  Todas as idades
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-3">
+                  Pacote Premium
+                </h3>
+                <ul class="text-gray-600 mb-6 space-y-2">
+                  <li class="flex items-start">
+                    <i class="ri-check-line ri-lg text-green-500 mr-2 mt-1"></i>
+                    <span>Piscina de bolinhas + Pula-pula</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="ri-check-line ri-lg text-green-500 mr-2 mt-1"></i>
+                    <span>2 Oficinas à escolha</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="ri-check-line ri-lg text-green-500 mr-2 mt-1"></i>
+                    <span>Dupla de recreadores</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="ri-check-line ri-lg text-green-500 mr-2 mt-1"></i>
+                    <span>Personagem à escolha</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="ri-check-line ri-lg text-green-500 mr-2 mt-1"></i>
+                    <span>Pintura artística</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="ri-check-line ri-lg text-green-500 mr-2 mt-1"></i>
+                    <span>Esculturas de balão</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="p-6 border-t border-gray-100">
+                <div class="flex justify-between items-center mb-4">
+                  <span class="text-primary font-bold text-2xl"
+                    >R$ 1.680,00</span
+                  >
+                  <span class="text-gray-500 text-sm">Duração: 5 horas</span>
+                </div>
+                <button
+                  class="w-full bg-primary text-white py-3 px-6 rounded-button font-bold text-lg shadow-lg hover:bg-opacity-90 transition-all transform hover:-translate-y-1 whitespace-nowrap package-select-btn"
+                  data-package="Pacote Premium"
+                  data-price="1680"
+                >
+                  Escolher Este
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="galeria" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+            Nossa Galeria
+          </h2>
+          <p class="text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+            Veja alguns momentos especiais das festas que organizamos!
+          </p>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div
+              class="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all"
+            >
+              <img
+                src="https://readdy.ai/api/search-image?query=children%2520playing%2520at%2520birthday%2520party%252C%2520having%2520fun%2520with%2520entertainers%252C%2520colorful%2520decorations%252C%2520joyful%2520atmosphere%252C%2520real%2520party%2520photo%252C%2520candid%2520moment&width=300&height=300&seq=gallery1&orientation=squarish"
+                alt="Festa Infantil"
+                class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div
+              class="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all"
+            >
+              <img
+                src="https://readdy.ai/api/search-image?query=children%2520workshop%2520activity%2520at%2520party%252C%2520kids%2520making%2520crafts%252C%2520creative%2520fun%252C%2520colorful%2520materials%252C%2520real%2520party%2520photo%252C%2520candid%2520moment&width=300&height=300&seq=gallery2&orientation=squarish"
+                alt="Oficina Criativa"
+                class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div
+              class="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all"
+            >
+              <img
+                src="https://readdy.ai/api/search-image?query=princess%2520character%2520with%2520children%2520at%2520birthday%2520party%252C%2520kids%2520excited%252C%2520colorful%2520decorations%252C%2520magical%2520moment%252C%2520real%2520party%2520photo%252C%2520candid%2520moment&width=300&height=300&seq=gallery3&orientation=squarish"
+                alt="Personagem Princesa"
+                class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div
+              class="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all"
+            >
+              <img
+                src="https://readdy.ai/api/search-image?query=face%2520painting%2520for%2520child%2520at%2520party%252C%2520colorful%2520design%2520on%2520kid%2527s%2520face%252C%2520artistic%2520activity%252C%2520fun%2520moment%252C%2520real%2520party%2520photo%252C%2520candid%2520moment&width=300&height=300&seq=gallery4&orientation=squarish"
+                alt="Pintura Facial"
+                class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div
+              class="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all"
+            >
+              <img
+                src="https://readdy.ai/api/search-image?query=children%2520in%2520ball%2520pit%2520at%2520party%252C%2520kids%2520playing%2520with%2520colorful%2520balls%252C%2520fun%2520activity%252C%2520joyful%2520atmosphere%252C%2520real%2520party%2520photo%252C%2520candid%2520moment&width=300&height=300&seq=gallery5&orientation=squarish"
+                alt="Piscina de Bolinhas"
+                class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div
+              class="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all"
+            >
+              <img
+                src="https://readdy.ai/api/search-image?query=children%2520on%2520bouncy%2520castle%2520at%2520party%252C%2520kids%2520jumping%2520and%2520playing%252C%2520fun%2520activity%252C%2520colorful%2520inflatable%252C%2520real%2520party%2520photo%252C%2520candid%2520moment&width=300&height=300&seq=gallery6&orientation=squarish"
+                alt="Pula-Pula"
+                class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div
+              class="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all"
+            >
+              <img
+                src="https://readdy.ai/api/search-image?query=balloon%2520artist%2520making%2520sculptures%2520for%2520children%2520at%2520party%252C%2520colorful%2520balloon%2520animals%252C%2520kids%2520watching%2520excited%252C%2520fun%2520activity%252C%2520real%2520party%2520photo&width=300&height=300&seq=gallery7&orientation=squarish"
+                alt="Esculturas de Balão"
+                class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div
+              class="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all"
+            >
+              <img
+                src="https://readdy.ai/api/search-image?query=children%2520gardening%2520workshop%2520at%2520party%252C%2520kids%2520planting%2520in%2520small%2520pots%252C%2520educational%2520activity%252C%2520fun%2520with%2520soil%2520and%2520plants%252C%2520real%2520party%2520photo&width=300&height=300&seq=gallery8&orientation=squarish"
+                alt="Oficina de Jardinagem"
+                class="w-full h-64 object-cover object-top hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="contato" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+            Informações e Contato
+          </h2>
+          <p class="text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+            Tire suas dúvidas e saiba mais sobre nossos serviços de animação
+            infantil!
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-lg shadow-md">
+              <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                Formas de Pagamento
+              </h3>
+              <div class="space-y-4">
+                <div class="flex items-start">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center text-primary mr-4"
+                  >
+                    <i class="ri-bank-card-line ri-2x"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-800 mb-1">
+                      Cartão de Crédito/Débito
+                    </h4>
+                    <p class="text-gray-600">
+                      Aceitamos todas as bandeiras principais.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center text-primary mr-4"
+                  >
+                    <i class="ri-bank-line ri-2x"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-800 mb-1">
+                      Transferência Bancária
+                    </h4>
+                    <p class="text-gray-600">
+                      PIX ou transferência tradicional.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center text-primary mr-4"
+                  >
+                    <i class="ri-money-dollar-circle-line ri-2x"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-800 mb-1">Dinheiro</h4>
+                    <p class="text-gray-600">
+                      Pagamento em espécie no dia do evento.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-8 pt-8 border-t border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                  Política de Reserva
+                </h3>
+                <div class="space-y-4">
+                  <div class="flex items-start">
+                    <div
+                      class="w-10 h-10 flex items-center justify-center text-primary mr-4"
+                    >
+                      <i class="ri-calendar-check-line ri-2x"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-gray-800 mb-1">Sinal de 50%</h4>
+                      <p class="text-gray-600">
+                        Para garantir sua data, é necessário um sinal de 50% do
+                        valor total.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex items-start">
+                    <div
+                      class="w-10 h-10 flex items-center justify-center text-primary mr-4"
+                    >
+                      <i class="ri-time-line ri-2x"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-gray-800 mb-1">Cancelamento</h4>
+                      <p class="text-gray-600">
+                        Cancelamentos com até 15 dias de antecedência recebem
+                        70% do sinal de volta. Menos de 15 dias, não há
+                        reembolso do sinal.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white p-8 rounded-lg shadow-md">
+              <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                Entre em Contato
+              </h3>
+              <p class="text-gray-600 mb-6">
+                Estamos disponíveis para tirar suas dúvidas e ajudar a planejar
+                a festa perfeita para seu filho!
+              </p>
+              <div class="space-y-6">
+                <div class="flex items-center">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center text-primary mr-4"
+                  >
+                    <i class="ri-whatsapp-line ri-2x"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-800 mb-1">WhatsApp</h4>
+                    <p class="text-gray-600">(21) 98068-8857</p>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center text-primary mr-4"
+                  >
+                    <i class="ri-mail-line ri-2x"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-800 mb-1">E-mail</h4>
+                    <p class="text-gray-600">contato@animaart.com.br</p>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <div
+                    class="w-10 h-10 flex items-center justify-center text-primary mr-4"
+                  >
+                    <i class="ri-instagram-line ri-2x"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-bold text-gray-800 mb-1">Instagram</h4>
+                    <p class="text-gray-600">@animaart.festas</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-8 pt-8 border-t border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">
+                  Horário de Atendimento
+                </h3>
+                <div class="space-y-2">
+                  <p class="text-gray-600">
+                    <span class="font-semibold">Segunda a Sexta:</span> 9h às
+                    18h
+                  </p>
+                  <p class="text-gray-600">
+                    <span class="font-semibold">Sábado:</span> 9h às 14h
+                  </p>
+                  <p class="text-gray-600">
+                    <span class="font-semibold">Domingo:</span> Fechado
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div
+        id="checkout-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+      >
+        <div
+          class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4 overflow-hidden"
+        >
+          <div class="bg-primary py-4 px-6">
+            <h3 class="text-xl font-bold text-white">Finalizar Pedido</h3>
+          </div>
+          <div class="p-6">
+            <form id="checkout-form" class="space-y-4">
+              <div>
+                <label for="name" class="block text-gray-700 font-medium mb-2"
+                  >Nome do Responsável</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  required
+                />
+              </div>
+              <div>
+                <label for="date" class="block text-gray-700 font-medium mb-2"
+                  >Data do Evento</label
+                >
+                <input
+                  type="date"
+                  id="date"
+                  name="date"
+                  class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  for="location"
+                  class="block text-gray-700 font-medium mb-2"
+                  >Local do Evento</label
+                >
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  required
+                />
+              </div>
+              <div class="border-t border-gray-200 pt-4 mt-6">
+                <h4 class="font-bold text-gray-800 mb-4">Resumo do Pedido</h4>
+                <div id="order-summary" class="space-y-2 mb-4">
+                  <!-- Preenchido via JavaScript -->
+                </div>
+
+                <div class="border-t border-gray-200 pt-4 mt-6">
+                  <h4 class="font-bold text-gray-800 mb-4">Resumo do Pedido</h4>
+                  <div id="order-summary" class="space-y-2 mb-4">
+                    <!-- Preenchido via JavaScript -->
+                  </div>
+                  <div id="cupom-section" class="mb-4">
+                    <label
+                      for="cupomInput"
+                      class="block text-sm font-medium text-gray-700 mb-1"
+                      >Cupom de Desconto</label
+                    >
+                    <div class="flex">
+                      <input
+                        type="text"
+                        id="cupomInput"
+                        class="flex-1 border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none"
+                        placeholder="Digite o cupom"
+                      />
+                      <button
+                        type="button"
+                        onclick="aplicarCupom()"
+                        class="bg-primary hover:bg-opacity-90 text-white px-4 py-2 rounded-r-md"
+                      >
+                        Aplicar
+                      </button>
+                    </div>
+                    <p id="cupomMessage" class="text-sm mt-2 hidden"></p>
+                  </div>
+                  <div class="flex justify-between font-bold text-lg">
+                    <span>Total:</span>
+                    <span id="modal-total-price" class="text-primary"
+                      >R$ 0,00</span
+                    >
+                  </div>
+                </div>
+
+                <div class="flex justify-between font-bold text-lg">
+                  <span>Total:</span>
+                  <span id="modal-total-price" class="text-primary"
+                    >R$ 0,00</span
+                  >
+                </div>
+              </div>
+              <div class="bg-yellow-50 p-4 rounded-lg mt-4">
+                <p class="text-sm text-yellow-800">
+                  <i class="ri-information-line ri-lg mr-2"></i>
+                  Para confirmar a reserva, será necessário um sinal de 50% do
+                  valor total.
+                </p>
+              </div>
+              <div class="flex justify-end space-x-4 mt-6">
+                <button
+                  type="button"
+                  id="cancel-checkout"
+                  class="px-4 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-50 transition-colors whitespace-nowrap !rounded-button"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  class="bg-primary text-white px-6 py-2 rounded font-semibold hover:bg-opacity-90 transition-colors whitespace-nowrap !rounded-button"
+                >
+                  Enviar para WhatsApp
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="floating-whatsapp">
+        <a
+          href="https://wa.me/5521980688857"
+          target="_blank"
+          class="bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors"
+        >
+          <i class="ri-whatsapp-line ri-2x"></i>
+        </a>
+      </div>
+    </main>
+    <footer class="bg-gray-800 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between mb-8">
+          <div class="mb-8 md:mb-0">
+            <a href="#" class="text-3xl font-['Pacifico'] text-white mb-4 block"
+              >Anima Art</a
+            >
+            <p class="text-gray-400 max-w-xs">
+              Transformando festas infantis em momentos mágicos e inesquecíveis
+              desde 2018.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+            <div>
+              <h4 class="text-lg font-bold mb-4">Navegação</h4>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="#inicio"
+                    class="text-gray-400 hover:text-white transition-colors"
+                    >Início</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#montar"
+                    class="text-gray-400 hover:text-white transition-colors"
+                    >Montar Festa</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#pacotes"
+                    class="text-gray-400 hover:text-white transition-colors"
+                    >Pacotes</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#galeria"
+                    class="text-gray-400 hover:text-white transition-colors"
+                    >Galeria</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#contato"
+                    class="text-gray-400 hover:text-white transition-colors"
+                    >Contato</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="text-lg font-bold mb-4">Serviços</h4>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-400 hover:text-white transition-colors"
+                    >Recreação</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-400 hover:text-white transition-colors"
+                    >Oficinas</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-400 hover:text-white transition-colors"
+                    >Personagens</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-gray-400 hover:text-white transition-colors"
+                    >Brinquedos</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="text-lg font-bold mb-4">Contato</h4>
+              <ul class="space-y-2">
+                <li class="flex items-center">
+                  <i class="ri-whatsapp-line mr-2"></i>
+                  <span>(21) 98068-8857</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="ri-mail-line mr-2"></i>
+                  <span>contato@animaart.com.br</span>
+                </li>
+                <li class="flex items-center">
+                  <i class="ri-map-pin-line mr-2"></i>
+                  <span>São Paulo, SP</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-400 mb-4 md:mb-0">
+            © 2025 Anima Art. Todos os direitos reservados.
+          </p>
+          <div class="flex space-x-4">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="ri-instagram-line ri-lg"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="ri-facebook-circle-line ri-lg"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="ri-youtube-line ri-lg"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script id="mobile-menu-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+        });
+        // Fechar o menu ao clicar em um link
+        const mobileLinks = mobileMenu.querySelectorAll("a");
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.add("hidden");
+          });
+        });
+      });
+    </script>
+    <script id="tab-switcher-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const tabButtons = document.querySelectorAll(".tab-button");
+        const tabContents = document.querySelectorAll(".tab-content");
+        const progressFill = document.querySelector(".progress-fill");
+        tabButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const tabId = this.getAttribute("data-tab");
+            // Atualizar botões
+            tabButtons.forEach((btn) => btn.classList.remove("active"));
+            this.classList.add("active");
+            // Atualizar conteúdo
+            tabContents.forEach((content) =>
+              content.classList.remove("active")
+            );
+            document.getElementById(`${tabId}-content`).classList.add("active");
+            // Atualizar barra de progresso
+            const index = Array.from(tabButtons).indexOf(this);
+            const progressPercentage = (index + 1) * 25;
+            progressFill.style.width = `${progressPercentage}%`;
+          });
+        });
+      });
+    </script>
+    <script id="quantity-control-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const quantityControls = document.querySelectorAll(".quantity-control");
+        const itemCount = document.getElementById("item-count");
+        const totalPrice = document.getElementById("total-price");
+        const continueButton = document.getElementById("continue-button");
+        let selectedItems = [];
+        let total = 0;
+        quantityControls.forEach((control) => {
+          const minusBtn = control.querySelector(".minus");
+          const plusBtn = control.querySelector(".plus");
+          const display = control.querySelector(".quantity-display");
+          const itemCard = control.closest(".item-card");
+          const itemName = itemCard.querySelector("h3").textContent;
+          const itemPrice = parseFloat(
+            itemCard
+              .querySelector(".text-primary")
+              .textContent.replace("R$ ", "")
+              .replace(",", ".")
+          );
+          minusBtn.addEventListener("click", function () {
+            let quantity = parseInt(display.textContent);
+            if (quantity > 0) {
+              quantity--;
+              display.textContent = quantity;
+              updateCart(itemName, itemPrice, quantity);
+            }
+          });
+          plusBtn.addEventListener("click", function () {
+            let quantity = parseInt(display.textContent);
+            quantity++;
+            display.textContent = quantity;
+            updateCart(itemName, itemPrice, quantity);
+          });
+        });
+        function updateCart(name, price, quantity) {
+          // Atualizar ou adicionar item
+          const existingItemIndex = selectedItems.findIndex(
+            (item) => item.name === name
+          );
+          if (existingItemIndex !== -1) {
+            if (quantity === 0) {
+              selectedItems.splice(existingItemIndex, 1);
+            } else {
+              selectedItems[existingItemIndex].quantity = quantity;
+            }
+          } else if (quantity > 0) {
+            selectedItems.push({
+              name: name,
+              price: price,
+              quantity: quantity,
+            });
+          }
+          // Recalcular total
+          total = selectedItems.reduce(
+            (sum, item) => sum + item.price * item.quantity,
+            0
+          );
+          // Atualizar UI
+          itemCount.textContent = selectedItems.reduce(
+            (sum, item) => sum + item.quantity,
+            0
+          );
+          totalPrice.textContent = `R$ ${total.toFixed(2).replace(".", ",")}`;
+          // Habilitar/desabilitar botão continuar
+          continueButton.disabled = selectedItems.length === 0;
+        }
+        // Botão continuar
+        continueButton.addEventListener("click", function () {
+          if (selectedItems.length > 0) {
+            openCheckoutModal("custom", selectedItems, total);
+          }
+        });
+      });
+    </script>
+    <script id="package-selection-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const packageButtons = document.querySelectorAll(".package-select-btn");
+        packageButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const packageName = this.getAttribute("data-package");
+            const packagePrice = parseFloat(this.getAttribute("data-price"));
+            const packageItems = [];
+            const itemsList =
+              this.closest(".package-card").querySelectorAll("ul li span");
+            itemsList.forEach((item) => {
+              packageItems.push({
+                name: item.textContent,
+                price: 0, // Preço individual não é relevante para pacotes
+                quantity: 1,
+              });
+            });
+            openCheckoutModal(
+              "package",
+              packageItems,
+              packagePrice,
+              packageName
+            );
+          });
+        });
+      });
+    </script>
+    <script id="checkout-modal-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const checkoutModal = document.getElementById("checkout-modal");
+        const cancelCheckout = document.getElementById("cancel-checkout");
+        const checkoutForm = document.getElementById("checkout-form");
+        const orderSummary = document.getElementById("order-summary");
+        const modalTotalPrice = document.getElementById("modal-total-price");
+        let currentOrderType = "";
+        let currentPackageName = "";
+        let currentItems = [];
+        let currentTotal = 0;
+        window.openCheckoutModal = function (
+          type,
+          items,
+          total,
+          packageName = ""
+        ) {
+          currentOrderType = type;
+          currentItems = items;
+          currentTotal = total;
+          currentPackageName = packageName;
+          // Limpar e preencher o resumo do pedido
+          orderSummary.innerHTML = "";
+          if (type === "package") {
+            const packageHeader = document.createElement("div");
+            packageHeader.className = "font-bold text-gray-800 mb-2";
+            packageHeader.textContent = packageName;
+            orderSummary.appendChild(packageHeader);
+            items.forEach((item) => {
+              const itemElement = document.createElement("div");
+              itemElement.className = "flex items-start";
+              itemElement.innerHTML = `
+<i class="ri-check-line text-green-500 mr-2 mt-1"></i>
+<span>${item.name}</span>
+`;
+              orderSummary.appendChild(itemElement);
+            });
+          } else {
+            items.forEach((item) => {
+              const itemElement = document.createElement("div");
+              itemElement.className = "flex justify-between";
+              itemElement.innerHTML = `
+<span>${item.name} x${item.quantity}</span>
+<span>R$ ${(item.price * item.quantity).toFixed(2).replace(".", ",")}</span>
+`;
+              orderSummary.appendChild(itemElement);
+            });
+          }
+          modalTotalPrice.textContent = `R$ ${total
+            .toFixed(2)
+            .replace(".", ",")}`;
+          // Exibir o modal
+          checkoutModal.classList.remove("hidden");
+          document.body.style.overflow = "hidden";
+        };
+        cancelCheckout.addEventListener("click", function () {
+          checkoutModal.classList.add("hidden");
+          document.body.style.overflow = "auto";
+        });
+        checkoutForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const name = document.getElementById("name").value;
+          const date = document.getElementById("date").value;
+          const location = document.getElementById("location").value;
+          // Formatar a data
+          const formattedDate = new Date(date).toLocaleDateString("pt-BR");
+          // Construir a mensagem para o WhatsApp
+          let message = `*Pedido Anima Art - Festa Infantil*\n\n`;
+          message += `*Nome:* ${name}\n`;
+          message += `*Data:* ${formattedDate}\n`;
+          message += `*Local:* ${location}\n\n`;
+          if (currentOrderType === "package") {
+            message += `*Pacote Selecionado:* ${currentPackageName}\n`;
+            message += `*Itens Inclusos:*\n`;
+            currentItems.forEach((item) => {
+              message += `- ${item.name}\n`;
+            });
+          } else {
+            message += `*Itens Selecionados:*\n`;
+            currentItems.forEach((item) => {
+              message += `- ${item.name} (x${item.quantity}): R$ ${(
+                item.price * item.quantity
+              )
+                .toFixed(2)
+                .replace(".", ",")}\n`;
+            });
+          }
+          message += `\n*Valor Total:* R$ ${currentTotal
+            .toFixed(2)
+            .replace(".", ",")}\n`;
+          message += `*Sinal (50%):* R$ ${(currentTotal * 0.5)
+            .toFixed(2)
+            .replace(".", ",")}\n\n`;
+          message += `Aguardo o contato para confirmar a reserva. Obrigado!`;
+          // Codificar a mensagem para URL
+          const encodedMessage = encodeURIComponent(message);
+          // Abrir WhatsApp com a mensagem
+          window.open(
+            `https://wa.me/5521980688857?text=${encodedMessage}`,
+            "_blank"
+          );
+          // Fechar o modal
+          checkoutModal.classList.add("hidden");
+          document.body.style.overflow = "auto";
+        });
+
+        // CUPOM DE DESCONTO
+        let descontoAplicado = 0;
+
+        window.aplicarCupom = function () {
+          const cupomInput = document
+            .getElementById("cupomInput")
+            .value.trim()
+            .toUpperCase();
+          const cupomMessage = document.getElementById("cupomMessage");
+
+          if (cupomInput === "ANIMA10") {
+            descontoAplicado = currentTotal * 0.1;
+            const novoTotal = currentTotal - descontoAplicado;
+            modalTotalPrice.textContent = `R$ ${novoTotal
+              .toFixed(2)
+              .replace(".", ",")}`;
+            cupomMessage.textContent = "Cupom aplicado com sucesso! 🎉";
+            cupomMessage.classList.remove("hidden");
+            cupomMessage.classList.remove("text-red-600");
+            cupomMessage.classList.add("text-green-600");
+          } else {
+            descontoAplicado = 0;
+            modalTotalPrice.textContent = `R$ ${currentTotal
+              .toFixed(2)
+              .replace(".", ",")}`;
+            cupomMessage.textContent = "Cupom inválido.";
+            cupomMessage.classList.remove("hidden");
+            cupomMessage.classList.remove("text-green-600");
+            cupomMessage.classList.add("text-red-600");
+          }
+        };
+      });
+    </script>
+  </body>
+</html>
